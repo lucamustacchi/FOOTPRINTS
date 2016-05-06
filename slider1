@@ -1,0 +1,30 @@
+class Slider1 {
+  boolean sliderActive = false;
+  int circleColorR = 89;
+  int circleColorG = 89;
+  int circleColorB = 89; 
+  int sliderX = 40;
+  int sliderY = height-100;
+  int sliderHeight = 3;
+  float sliderValue = 0;
+  int sliderPos = 40;
+  float sliderWidth = width-sliderX;
+  float sliderActualWidth = sliderWidth-sliderX;
+  float sixMonths = sliderActualWidth/21;
+  int currentYear = 0;
+  void displayBar() {
+    fill(188);
+    rect (sliderX, sliderY, width-sliderX*2, sliderHeight);
+    stroke (0);
+    if (sliderActive == true ) {
+      if (mouseX > sliderX && mouseX< width - sliderX) {
+        sliderPos = mouseX;
+      }
+      if (mouseX < sliderX) {
+        sliderPos = sliderX;
+      }
+      if (mouseX> width - sliderX) {
+        sliderPos = width - sliderX;
+      }
+    }
+  }
