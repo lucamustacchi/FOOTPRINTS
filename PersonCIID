@@ -1,0 +1,116 @@
+class PersonCIID {
+  float dotX;
+  float dotY;
+  float diameter = 12;
+  float textDim = 12;
+  float mColor = 200;
+  float year;
+  String Name;
+  float IDPyear;
+  int circleColorR;
+  int circleColorG;
+  int circleColorB;
+  String city;
+  String background;
+  boolean over = false;
+  //mono = loadFont("Roboto-Medium_0.tff,32");
+
+  PersonCIID(float x_, float y_, float year_, String studentName_, float IDPyear_, String City_, String Background_) {
+    dotX = x_;
+    dotY = y_;
+    year = year_;
+    Name = studentName_;
+    IDPyear = IDPyear_;
+    city = City_;
+    background = Background_;
+  }
+  void display(float selectedYear_) {
+    if (IDPyear == 0) {
+      circleColorR=89;
+      circleColorG=89;
+      circleColorB=89;
+    }
+    if (IDPyear == 6) { 
+      circleColorR=89;
+      circleColorG=89;
+      circleColorB=89;
+    }
+    if (IDPyear == 7) { 
+      circleColorR=89;
+      circleColorG=89;
+      circleColorB=89;
+    }
+    if (IDPyear == 8) { 
+      circleColorR=118;
+      circleColorG=221;
+      circleColorB=137;
+    }
+
+    if (IDPyear == 9) { 
+      circleColorR=94;
+      circleColorG=135;
+      circleColorB=162;
+    }
+    if (IDPyear == 10) { 
+      circleColorR=228;
+      circleColorG=122;
+      circleColorB=54;
+    }
+    if (IDPyear == 11) { 
+      circleColorR=240;
+      circleColorG=202;
+      circleColorB=62;
+    }
+    if (IDPyear == 12) { 
+      circleColorR=184;
+      circleColorG=106;
+      circleColorB=216;
+    }
+    if (IDPyear == 13) { 
+      circleColorR=225;
+      circleColorG=89;
+      circleColorB=68;
+    }
+    if (IDPyear == 14) { 
+      circleColorR=44;
+      circleColorG=151;
+      circleColorB=222;
+    }
+    if (IDPyear == 15) { 
+      circleColorR=63;
+      circleColorG=179;
+      circleColorB=157;
+    }
+    if (IDPyear == 16) { 
+      circleColorR=229;
+      circleColorG=118;
+      circleColorB=154;
+    }
+
+
+    if (year == selectedYear_) {
+      if (over) {
+        fill(34,34,45);
+        textSize(textDim);
+        int txtDist = 20;
+        //textFont (mono);
+        text(Name, dotX, 100);
+        text(background, dotX, 100 + txtDist);
+        println(background);
+        text(city, dotX, 100 + txtDist+txtDist);
+      }
+      fill(circleColorR, circleColorG, circleColorB, 200);
+      noStroke();
+      ellipse(dotX, dotY, diameter, diameter);
+    }
+  }
+
+  void rollover(float px, float py) {
+    float d = dist(px, py, dotX, dotY);
+    if (d < diameter/2) {
+      over = true;
+    } else {
+      over = false;
+    }
+  }
+}
