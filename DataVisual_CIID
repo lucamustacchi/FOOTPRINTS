@@ -1,0 +1,170 @@
+PShape bot;
+Slider1 sld;
+SliderLabel slabel;
+PersonCIID person;
+String Name;
+String HomeCity;
+String Background;
+String City;
+float Year;
+String IDPyear;
+int numberPpl;
+Table table; 
+String yearX = "0";
+//PShape map;
+ArrayList<PersonCIID> persons = new ArrayList<PersonCIID>();
+void setup() {
+  bot = loadShape("Map.svg");
+  size(1280, 800);
+  //fullScreen();
+  loadData();
+  //creating slider
+  sld = new Slider1();
+  //creating sliderlabels
+  slabel = new SliderLabel();
+}
+
+void loadData() {
+  Table table = loadTable("CIIDDATA.csv", "header");
+
+  for (TableRow row : table.rows()) {
+    String Name = row.getString("Full Name");
+    String HomeCity = row.getString("Home City");
+    String City = row.getString("Citys");
+    String Background = row.getString("Background ");
+    float Year = row.getFloat("Moved in (month/year)");
+    float IDPyear = row.getFloat("Group");
+    float  xAxis = row.getFloat("X akses");
+    float  yAxis = row.getFloat("Y akses");
+
+    //MAPPED COORDINATES VALUE TO THE SCRREN SIZE
+    float xMappedValue = map(yAxis, -180, 180, 50, width-90);
+    float yMappedValue = map(xAxis, -180, 210, 1200, -400);
+    PersonCIID newPerson= new PersonCIID(xMappedValue+random(0, 40), yMappedValue+random(0, 40), Year, Name, IDPyear, City, Background);
+
+    persons.add(newPerson);
+    
+    //BACKROUND
+    //map = loadShape("Map.svg");
+  }
+}
+
+
+void draw () {
+  background(229,229,234);
+  bot.disableStyle();
+  fill(255,255,255,90);
+  shape(bot,10,-100, width, height+200);
+
+  //drawing slider and labels
+  sld.displayBar();
+  slabel.years();
+  sld.timelineDiv();
+  sld.sliderHandle();
+  //Vector
+  //map.noFill();
+  //shape(map, CENTER, CENTER, width, 1600);
+ 
+
+  for (int i = 0; i < persons.size(); i++) {
+    PersonCIID p = persons.get(i);
+    p.rollover(mouseX, mouseY);
+    p.display(sld.currentYear);
+  }
+  //info box
+  //2.Titel
+  fill(89, 89, 89);
+  textSize(14);
+  textAlign(LEFT);
+  text("CIID students", 27, 415);
+
+  //befor CIID
+  fill(89, 89, 89);
+  ellipse(35, 440, 15, 15);
+  textSize(12);
+  textAlign(LEFT);
+  text("Before CIID", 50, 445);
+
+  //IDP 2008
+  fill(89, 89, 89);
+  textSize(12);
+  textAlign(LEFT);
+  text("IDP 2008", 50, 465);
+  fill(118, 221, 137);
+  ellipse(35, 460, 15, 15);
+
+  //IDP 2009
+  fill(89, 89, 89);
+  textSize(12);
+  textAlign(LEFT);
+  text("IDP 2009", 50, 485);
+  fill(94, 135, 162);
+  ellipse(35, 480, 15, 15);
+
+  // IDP 2010
+  fill(89, 89, 89);
+  textSize(12);
+  textAlign(LEFT);
+  text("IDP 2010", 50, 505);
+  fill(228, 122, 54);
+  ellipse(35, 500, 15, 15);
+
+  // IDP 2011
+  fill(89, 89, 89);
+  textSize(12);
+  textAlign(LEFT);
+  text("IDP 2011", 50, 525);
+  fill(240, 202, 62);
+  ellipse(35, 520, 15, 15);
+
+  // IDP 2012
+  fill(89, 89, 89);
+  textSize(12);
+  textAlign(LEFT);
+  text("IDP 2012", 50, 545);
+  fill(184, 106, 216);
+  ellipse(35, 540, 15, 15);
+
+  // IDP 2013
+  fill(89, 89, 89);
+  textSize(12);
+  textAlign(LEFT);
+  text("IDP 2013", 50, 565);
+  fill(225, 89, 68);
+  ellipse(35, 560, 15, 15);
+
+  // IDP 2014
+  fill(89, 89, 89);
+  textSize(12);
+  textAlign(LEFT);
+  text("IDP 2014", 50, 585);
+  fill(44, 151, 222);
+  ellipse(35, 580, 15, 15);
+
+  // IDP 2015
+  fill(89, 89, 89);
+  textSize(12);
+  textAlign(LEFT);
+  text("IDP 2015", 50, 605);
+  fill(63, 179, 157);
+  ellipse(35, 600, 15, 15);
+
+  // IDP 2016
+  fill(89, 89, 89);
+  textSize(12);
+  textAlign(LEFT);
+  text("IDP 2016", 50, 625);
+  fill(228, 118, 154);
+  ellipse(35, 620, 15, 15);
+}
+
+//slider moving
+void mousePressed() {
+  if ( mouseX > sld.sliderX && mouseX < sld.sliderWidth && mouseY>sld.sliderY - sld.sliderHeight && mouseY<sld.sliderY+sld.sliderHeight*2) {
+    sld.sliderActive= true;
+  }
+}
+
+void mouseReleased () {
+  sld.sliderActive = false;
+}
