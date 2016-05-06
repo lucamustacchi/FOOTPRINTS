@@ -1,0 +1,29 @@
+class SliderLabel {
+  float labelSize = 12;
+  float textDistance = 30;
+  PFont font;
+  void years() {
+    textSize(labelSize);
+    fill(153);
+    textAlign(CENTER, BOTTOM);
+    text ("2006", sld.sliderX, sld.sliderY+textDistance);
+    text ("2007", sld.sliderX+sld.sixMonths*2, sld.sliderY+textDistance);
+    text ("2008", sld.sliderX+sld.sixMonths*4, sld.sliderY+textDistance);
+    text ("2009", sld.sliderX+sld.sixMonths*6, sld.sliderY+textDistance);
+    text ("2010", sld.sliderX+sld.sixMonths*8, sld.sliderY+textDistance);
+    text ("2011", sld.sliderX+sld.sixMonths*10, sld.sliderY+textDistance);
+    text ("2012", sld.sliderX+sld.sixMonths*12, sld.sliderY+textDistance);
+    text ("2013", sld.sliderX+sld.sixMonths*14, sld.sliderY+textDistance);
+    text ("2014", sld.sliderX+sld.sixMonths*16, sld.sliderY+textDistance);
+    text ("2015", sld.sliderX+sld.sixMonths*18, sld.sliderY+textDistance);
+    text ("2016", sld.sliderX+sld.sixMonths*20, sld.sliderY+textDistance);
+    text ("YEAR", sld.sliderX+sld.sixMonths*21, sld.sliderY+textDistance);
+    textSize(30);
+    fill(34, 34, 45, 120);
+    font= createFont("Roboto-Regular", 32);;
+    textFont(font);
+    text("FOOTPRINTS", +120, 53);
+    textSize(13);
+    text("CIID students leaving a mark", +120, 70);
+  }
+}
